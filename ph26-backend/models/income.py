@@ -1,5 +1,5 @@
-from ph26_backend.base import BaseModel, UUID4, Field, Optional, datetime
-from ph26_backend.enums import PayFrequency
+from base import BaseModel, UUID4, Field, Optional, datetime
+from enums import PayFrequency
 
 
 class IncomeDetailsUpsert(BaseModel):

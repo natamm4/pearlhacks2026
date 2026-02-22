@@ -1,5 +1,5 @@
-from ph26_backend.base import BaseModel, UUID4, Field, Optional, datetime, date
-from ph26_backend.enums import GoalType
+from base import BaseModel, UUID4, Field, Optional, datetime, date
+from enums import GoalType
 
 class GoalCreate(BaseModel):
     goal_type: GoalType

@@ -6,13 +6,14 @@ import os
 import traceback
 
 # Import routers (uncomment as you build them out)
-# from app.routes.profiles import router_profiles
-# from app.routes.financial_profiles import router_financial_profiles
-# from app.routes.income import router_income
-# from app.routes.debts import router_debts
-# from app.routes.goals import router_goals
-# from app.routes.preferences import router_preferences
-
+from routes import (
+    router_profiles,
+    router_financial_profiles,
+    router_income,
+    router_debts,
+    router_goals,
+    router_preferences,
+)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -50,12 +51,12 @@ async def global_exception_handler(request: Request, exc: Exception):
     )
 
 # Include routers
-# app.include_router(router_profiles)
-# app.include_router(router_financial_profiles)
-# app.include_router(router_income)
-# app.include_router(router_debts)
-# app.include_router(router_goals)
-# app.include_router(router_preferences)
+app.include_router(router_profiles)
+app.include_router(router_financial_profiles)
+app.include_router(router_income)
+app.include_router(router_debts)
+app.include_router(router_goals)
+app.include_router(router_preferences)
 
 
 @app.get("/")

@@ -1,5 +1,5 @@
-from ph26_backend.base import BaseModel, UUID4, Optional, datetime
-from ph26_backend.enums import ProfileType
+from base import BaseModel, UUID4, Optional, datetime
+from enums import ProfileType
 
 class FinancialProfileCreate(BaseModel):
     label: str = "My Profile"
