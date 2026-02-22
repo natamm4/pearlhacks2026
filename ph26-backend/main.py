@@ -7,10 +7,7 @@ import traceback
 from database import create_db_and_tables
 
 # Import routers
-from api.catalogs import router as catalogs_router
-from api.templates import router as templates_router
-from api.mappings import router as mappings_router                                                                                                                                                      
-                                                                                                                                                                                                        
+                                                                                                                                                    
                                                                                                                                                                                                         
 @asynccontextmanager
 async def lifespan(app: FastAPI):
