@@ -4,30 +4,32 @@ from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
 import os
 import traceback
-from database import create_db_and_tables
 
-# Import routers
-                                                                                                                                                    
-                                                                                                                                                                                                        
+# Import routers (uncomment as you build them out)
+# from app.routes.profiles import router_profiles
+# from app.routes.financial_profiles import router_financial_profiles
+# from app.routes.income import router_income
+# from app.routes.debts import router_debts
+# from app.routes.goals import router_goals
+# from app.routes.preferences import router_preferences
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Validate required environment variables
-    required_vars = ["DATABASE_URL", "SUPABASE_URL", "SUPABASE_ANON_KEY"]
+    required_vars = ["NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_ANON_KEY"]
     missing_vars = [var for var in required_vars if not os.getenv(var)]
 
     if missing_vars:
         print(f"WARNING: Missing environment variables: {', '.join(missing_vars)}")
     else:
         print("All required environment variables are set")
+    yield
 
-    create_db_and_tables()
-    yield                                                                                                                                                                                                 
-                                                                                                                                                                                                        
-                                                                                                                                                                                                        
-app = FastAPI(lifespan=lifespan, title="Pre-Flight API")                                                                                                                                                  
-                                                                                                                                                                                                        
-# CORS configuration
-allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173")
+
+app = FastAPI(lifespan=lifespan, title="UYO API")
+
+# CORS
+allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000")
 allowed_origins = [origin.strip() for origin in allowed_origins_str.split(",")]
 app.add_middleware(
     CORSMiddleware,
@@ -37,26 +39,29 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Global exception handler to ensure CORS headers are sent even on errors
+# Global error handler
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
-    error_traceback = traceback.format_exc()
     print(f"Error: {str(exc)}")
-    print(f"Traceback: {error_traceback}")
-
+    print(f"Traceback: {traceback.format_exc()}")
     return JSONResponse(
         status_code=500,
         content={"detail": str(exc), "type": type(exc).__name__}
     )
 
-# Include routers                                                                                                                                                                  
-                                                                                                                                                                                                        
-                                                                                                                                                                                                        
+# Include routers
+# app.include_router(router_profiles)
+# app.include_router(router_financial_profiles)
+# app.include_router(router_income)
+# app.include_router(router_debts)
+# app.include_router(router_goals)
+# app.include_router(router_preferences)
+
+
 @app.get("/")
 async def root():
-    return {"message": "Pre-Flight API"}
-
+    return {"message": "UYO API"}
 
 @app.get("/health")
 async def health():
-    return {"status": "healthy"} 
+    return {"status": "healthy"}
