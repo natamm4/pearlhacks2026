@@ -17,7 +17,7 @@ export default function Home() {
           <span className="text-muted-foreground text-sm cursor-pointer hover:text-foreground transition-colors">How It Works</span>
           <span className="text-muted-foreground text-sm cursor-pointer hover:text-foreground transition-colors">Pricing</span>
           <Link
-            href="/dashboard"
+            href="/auth"
             className="flex items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-medium px-4 py-2 hover:bg-primary/90 transition-colors"
           >
             Get Started Free
@@ -115,7 +115,7 @@ export default function Home() {
           Join thousands of professionals who negotiate smarter with UYO.
         </p>
         <Link
-          href="/dashboard"
+          href="/auth"
           className="flex items-center gap-2 justify-center rounded-md bg-background text-foreground font-medium px-6 py-3 hover:bg-background/90 transition-colors"
         >
           <span className="text-[15px]">Get Started — It&apos;s Free</span>

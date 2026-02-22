@@ -20,7 +20,7 @@ from routes import (
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    required_vars = ["NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_ANON_KEY"]
+    required_vars = ["SUPABASE_URL", "SUPABASE_SERVICE_KEY"]
     missing_vars = [var for var in required_vars if not os.getenv(var)]
 
     if missing_vars:
@@ -33,11 +33,17 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan, title="UYO API")
 
 # CORS
-allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000")
+allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://192.168.1.191:3000")
 allowed_origins = [origin.strip() for origin in allowed_origins_str.split(",")]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:8000",
+        "http://127.0.0.1:3000",
+        "http://192.168.1.191:3000"
+    ],
+    # allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
