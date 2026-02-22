@@ -67,73 +67,133 @@ export default function DashboardPage() {
               ))}
             </div>
 
-            {/* Form Content */}
+            {/* Form Content - tab specific */}
             <div className="flex flex-col gap-7 flex-1 overflow-y-auto p-8">
-              {/* Section 1: Base Compensation */}
-              <div className="flex flex-col gap-[14px]">
-                <h2 className="text-foreground font-semibold text-base">Base Compensation</h2>
-                <div className="flex gap-4 w-full">
-                  <div className="flex flex-col gap-[5px] flex-1">
-                    <label className="text-muted-foreground text-xs font-medium">Base Salary</label>
-                    <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
-                      <span className="text-[#1A1918] text-sm">$120,000</span>
+              {activeTab === "earnings" && (
+                <>
+                  {/* Section 1: Base Compensation */}
+                  <div className="flex flex-col gap-[14px]">
+                    <h2 className="text-foreground font-semibold text-base">Base Compensation</h2>
+                    <div className="flex gap-4 w-full">
+                      <div className="flex flex-col gap-[5px] flex-1">
+                        <label className="text-muted-foreground text-xs font-medium">Base Salary</label>
+                        <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
+                          <span className="text-[#1A1918] text-sm">$120,000</span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-[5px] flex-1">
+                        <label className="text-muted-foreground text-xs font-medium">Pay Frequency</label>
+                        <div className="flex items-center justify-between h-10 px-3 rounded-md bg-background border border-border">
+                          <span className="text-[#1A1918] text-sm">Bi-weekly</span>
+                          <ChevronDown size={14} className="text-[#9C9B99]" />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-[5px] flex-1">
-                    <label className="text-muted-foreground text-xs font-medium">Pay Frequency</label>
-                    <div className="flex items-center justify-between h-10 px-3 rounded-md bg-background border border-border">
-                      <span className="text-[#1A1918] text-sm">Bi-weekly</span>
-                      <ChevronDown size={14} className="text-[#9C9B99]" />
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-              {/* Section 2: Additional Compensation */}
-              <div className="flex flex-col gap-[14px]">
-                <h2 className="text-foreground font-semibold text-base">Additional Compensation</h2>
-                <div className="flex gap-4 w-full">
-                  <div className="flex flex-col gap-[5px] flex-1">
-                    <label className="text-muted-foreground text-xs font-medium">Sign-on Bonus</label>
-                    <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
-                      <span className="text-[#1A1918] text-sm">$25,000</span>
+                  {/* Section 2: Additional Compensation */}
+                  <div className="flex flex-col gap-[14px]">
+                    <h2 className="text-foreground font-semibold text-base">Additional Compensation</h2>
+                    <div className="flex gap-4 w-full">
+                      <div className="flex flex-col gap-[5px] flex-1">
+                        <label className="text-muted-foreground text-xs font-medium">Sign-on Bonus</label>
+                        <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
+                          <span className="text-[#1A1918] text-sm">$25,000</span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-[5px] flex-1">
+                        <label className="text-muted-foreground text-xs font-medium">Equity (RSUs/year)</label>
+                        <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
+                          <span className="text-[#1A1918] text-sm">$40,000</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-[5px] flex-1">
-                    <label className="text-muted-foreground text-xs font-medium">Equity (RSUs/year)</label>
-                    <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
-                      <span className="text-[#1A1918] text-sm">$40,000</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-              {/* Section 3: Benefits & Retirement */}
-              <div className="flex flex-col gap-[14px]">
-                <h2 className="text-foreground font-semibold text-base">Benefits &amp; Retirement</h2>
-                <div className="flex gap-4 w-full">
-                  <div className="flex flex-col gap-[5px] flex-1">
-                    <label className="text-muted-foreground text-xs font-medium">401k Match %</label>
-                    <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
-                      <span className="text-[#1A1918] text-sm">6%</span>
+                  {/* Section 3: Benefits & Retirement */}
+                  <div className="flex flex-col gap-[14px]">
+                    <h2 className="text-foreground font-semibold text-base">Benefits &amp; Retirement</h2>
+                    <div className="flex gap-4 w-full">
+                      <div className="flex flex-col gap-[5px] flex-1">
+                        <label className="text-muted-foreground text-xs font-medium">401k Match %</label>
+                        <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
+                          <span className="text-[#1A1918] text-sm">6%</span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-[5px] flex-1">
+                        <label className="text-muted-foreground text-xs font-medium">Health Insurance / mo</label>
+                        <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
+                          <span className="text-[#1A1918] text-sm">$250</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-[5px] flex-1">
-                    <label className="text-muted-foreground text-xs font-medium">Health Insurance / mo</label>
-                    <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
-                      <span className="text-[#1A1918] text-sm">$250</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-              {/* Form Actions */}
-              <div className="flex justify-end">
-                <button className="flex items-center gap-[6px] justify-center rounded-md bg-primary text-primary-foreground px-5 py-[10px] hover:bg-primary/90 transition-colors">
-                  <span className="text-[13px] font-medium">Next: Taxes</span>
-                  <ArrowRight size={14} className="text-primary-foreground" />
-                </button>
-              </div>
+                  {/* Form Actions */}
+                  <div className="flex justify-end">
+                    <button className="flex items-center gap-[6px] justify-center rounded-md bg-primary text-primary-foreground px-5 py-[10px] hover:bg-primary/90 transition-colors">
+                      <span className="text-[13px] font-medium">Next: Taxes</span>
+                      <ArrowRight size={14} className="text-primary-foreground" />
+                    </button>
+                  </div>
+                </>
+              )}
+
+              {activeTab === "taxes" && (
+                <>
+                  <div className="flex flex-col gap-[14px]">
+                    <h2 className="text-foreground font-semibold text-base">Taxes</h2>
+                    <div className="flex gap-4 w-full">
+                      <div className="flex flex-col gap-[5px] flex-1">
+                        <label className="text-muted-foreground text-xs font-medium">Federal Tax %</label>
+                        <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
+                          <span className="text-[#1A1918] text-sm">22%</span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-[5px] flex-1">
+                        <label className="text-muted-foreground text-xs font-medium">State Tax %</label>
+                        <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
+                          <span className="text-[#1A1918] text-sm">5%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-end">
+                    <button className="flex items-center gap-[6px] justify-center rounded-md bg-primary text-primary-foreground px-5 py-[10px] hover:bg-primary/90 transition-colors">
+                      <span className="text-[13px] font-medium">Save Taxes</span>
+                    </button>
+                  </div>
+                </>
+              )}
+
+              {activeTab === "savings" && (
+                <>
+                  <div className="flex flex-col gap-[14px]">
+                    <h2 className="text-foreground font-semibold text-base">Savings</h2>
+                    <div className="flex gap-4 w-full">
+                      <div className="flex flex-col gap-[5px] flex-1">
+                        <label className="text-muted-foreground text-xs font-medium">Emergency Fund / mo</label>
+                        <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
+                          <span className="text-[#1A1918] text-sm">$300</span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-[5px] flex-1">
+                        <label className="text-muted-foreground text-xs font-medium">Retirement Savings / mo</label>
+                        <div className="flex items-center h-10 px-3 rounded-md bg-background border border-border">
+                          <span className="text-[#1A1918] text-sm">$400</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-end">
+                    <button className="flex items-center gap-[6px] justify-center rounded-md bg-primary text-primary-foreground px-5 py-[10px] hover:bg-primary/90 transition-colors">
+                      <span className="text-[13px] font-medium">Save Savings</span>
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
