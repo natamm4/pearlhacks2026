@@ -12,12 +12,22 @@ class ProfileType(str, Enum):
     scenario = "scenario"
 
 class GoalType(str, Enum):
+    emergency_fund = "emergency_fund"
+    house = "house"
+    car = "car"
+    vacation = "vacation"
+    freedom_fund = "freedom_fund"
     retirement = "retirement"
-    home_purchase = "home_purchase"
-    education = "education"
+    custom = "custom"
+
+class DebtType(str, Enum):
+    student_loan = "student_loan"
+    car = "car"
+    credit_card = "credit_card"
+    personal = "personal"
     other = "other"
 
 class BudgetStrategy(str, Enum):
-    balanced = "balanced"
-    aggressive = "aggressive"
-    conservative = "conservative"
+    auto = "auto"
+    fifty_30_20 = "50_30_20"
+    sixty_30_10 = "60_30_10"
