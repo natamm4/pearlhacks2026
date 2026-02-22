@@ -52,10 +52,7 @@ async def global_exception_handler(request: Request, exc: Exception):
         content={"detail": str(exc), "type": type(exc).__name__}
     )
 
-# Include routers
-app.include_router(catalogs_router)
-app.include_router(templates_router)
-app.include_router(mappings_router)                                                                                                                                                                      
+# Include routers                                                                                                                                                                  
                                                                                                                                                                                                         
                                                                                                                                                                                                         
 @app.get("/")
