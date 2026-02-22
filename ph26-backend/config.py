@@ -1,17 +1,15 @@
-from pydantic_settings import BaseSettings
+import os
+from dotenv import load_dotenv
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+load_dotenv()  # <-- force load .env before Pydantic runs
 
 class Settings(BaseSettings):
     SUPABASE_URL: str
-    SUPABASE_SERVICE_KEY: str   # use the service key here, NOT the anon key
-                                # service key bypasses RLS, which is fine since
-                                # we're enforcing ownership in the route logic
-    class Config:
-        env_file = ".env"
+    SUPABASE_SERVICE_KEY: str
+
+    model_config = SettingsConfigDict(
+        extra="ignore",
+    )
 
 settings = Settings()
-```
-
-And your `.env`:
-```
-SUPABASE_URL=https://your-project-ref.supabase.co
-SUPABASE_SERVICE_KEY=eyJ... 

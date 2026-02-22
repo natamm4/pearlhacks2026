@@ -437,40 +437,23 @@ export default function DashboardPage() {
   }
 
   async function ensureUserRecords(userId: string) {
-    // ensure `profiles` row exists (profiles.id == auth.users.id)
-    const profRes = await supabase.from("profiles").select("id").eq("id", userId).maybeSingle();
-    if (profRes.error) throw profRes.error;
-    if (!profRes.data) {
-      const insertProf = await supabase.from("profiles").insert({ id: userId, onboarded: false }).select().maybeSingle();
-      if (insertProf.error) throw insertProf.error;
+    // perform initialization server-side to avoid RLS/client privilege issues
+    const { data: sessionData } = await supabase.auth.getSession();
+    const token = sessionData?.session?.access_token || null;
+    if (!token) throw new Error("No auth session available");
+    const apiBase = (process.env.NEXT_PUBLIC_API_URL as string) || "http://localhost:8000";
+    const res = await fetch(`${apiBase}/profiles/ensure`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    if (!res.ok) {
+      const body = await res.json().catch(() => null);
+      throw new Error(body?.detail || "Failed to initialize user records on server");
     }
-
-    // ensure user_preferences exists
-    const prefsRes = await supabase.from("user_preferences").select("user_id,active_profile_id").eq("user_id", userId).maybeSingle();
-    if (prefsRes.error) throw prefsRes.error;
-    let prefProfileId: string | null = prefsRes.data?.active_profile_id ?? null;
-    if (!prefsRes.data) {
-      const createPref = await supabase.from("user_preferences").insert({ user_id: userId }).select().maybeSingle();
-      if (createPref.error) throw createPref.error;
-      prefProfileId = createPref.data?.active_profile_id ?? null;
-    }
-
-    // ensure there's at least one financial_profile for the user
-    const fpRes = await supabase.from("financial_profiles").select("id").eq("user_id", userId).limit(1).maybeSingle();
-    if (fpRes.error) throw fpRes.error;
-    if (!fpRes.data) {
-      const newFp = await supabase
-        .from("financial_profiles")
-        .insert({ user_id: userId, label: "My Profile", profile_type: "current_job", is_active: true })
-        .select()
-        .maybeSingle();
-      if (newFp.error) throw newFp.error;
-      const newId = newFp.data?.id;
-      // update preferences.active_profile_id if not set
-      if (newId && !prefProfileId) {
-        await supabase.from("user_preferences").update({ active_profile_id: newId }).eq("user_id", userId);
-      }
-    }
+    return res.json();
   }
 
   async function loadAll() {

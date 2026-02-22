@@ -2,13 +2,13 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from supabase import create_client, Client
-from app.config import settings
+from config import settings
 
 # ============================================================
 # SUPABASE CLIENT
 # Single instance reused across all requests
 # ============================================================
-supabase: Client = create_client(settings.NEXT_PUBLIC_SUPABASE_URL, settings.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+supabase: Client = create_client(settings.SUPABASE_URL, settings.SUPABASE_SERVICE_KEY)
 def get_supabase() -> Client:
     return supabase
 

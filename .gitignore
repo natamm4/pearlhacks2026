@@ -43,4 +43,5 @@ ph26/next-env.d.ts
 # Backend
 ph26-backend/venv/
 ph26-backend/__pycache__/
+ph26-backend/config.py
 *.pyc

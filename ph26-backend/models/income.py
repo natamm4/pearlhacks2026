@@ -5,7 +5,7 @@ from enums import PayFrequency
 class IncomeDetailsUpsert(BaseModel):
     # Core income
     base_salary: float = Field(default=0, ge=0)
-    pay_frequency: PayFrequency = PayFrequency.biweekly
+    pay_frequency: PayFrequency = PayFrequency.BIWEEKLY
 
     # Additional comp — all optional
     sign_on_bonus: Optional[float] = Field(default=None, ge=0)

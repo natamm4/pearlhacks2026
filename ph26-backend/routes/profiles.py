@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from models import ProfileUpdate, ProfileResponse
 from dependencies import get_current_user, get_supabase
+from services.profiles import ensure_user_records
 
 router_profiles = APIRouter(prefix="/profiles", tags=["Profiles"])
 
@@ -27,3 +28,13 @@ async def update_my_profile(
         .execute()
     )
     return result.data[0]
+
+
+@router_profiles.post("/ensure")
+async def ensure_my_user_records(
+    current_user=Depends(get_current_user),
+    supabase=Depends(get_supabase)
+):
+    # Create any missing rows for this authenticated user in a server-side, trusted context
+    res = ensure_user_records(supabase, current_user.id)
+    return res
