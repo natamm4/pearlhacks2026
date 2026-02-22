@@ -1,0 +1,46 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Frontend dependencies
+ph26/node_modules
+ph26/.pnp
+ph26/.pnp.*
+ph26/.yarn/*
+!ph26/.yarn/patches
+!ph26/.yarn/plugins
+!ph26/.yarn/releases
+!ph26/.yarn/versions
+
+# testing
+ph26/coverage
+
+# next.js
+ph26/.next/
+ph26/out/
+
+# production
+ph26/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env*
+
+# vercel
+ph26/.vercel
+
+# typescript
+ph26/*.tsbuildinfo
+ph26/next-env.d.ts
+
+# Backend
+ph26-backend/venv/
+ph26-backend/__pycache__/
+*.pyc
