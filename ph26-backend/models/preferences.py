@@ -1,5 +1,5 @@
-from ph26_backend.base import BaseModel, UUID4, Field, validator, Optional, datetime
-from ph26_backend.enums import BudgetStrategy
+from base import BaseModel, UUID4, Field, validator, Optional, datetime
+from enums import BudgetStrategy
 
 class SavingsSplit(BaseModel):
     emergency_fund: float = Field(ge=0, le=1)

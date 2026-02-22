@@ -2,7 +2,7 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from supabase import create_client, Client
-from app.config import settings
+from config import settings
 
 # ============================================================
 # SUPABASE CLIENT
