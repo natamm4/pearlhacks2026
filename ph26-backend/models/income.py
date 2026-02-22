@@ -24,6 +24,9 @@ class IncomeDetailsUpsert(BaseModel):
     roth_ira_annual_contrib: float = Field(default=0, ge=0)
     roth_ira_balance: float = Field(default=0, ge=0)
 
+    # Tax filing
+    filing_status: Optional[str] = "single"  # "single" | "married_joint"
+
     # Location
     city: Optional[str] = None
     state_abbr: Optional[str] = Field(default=None, min_length=2, max_length=2)

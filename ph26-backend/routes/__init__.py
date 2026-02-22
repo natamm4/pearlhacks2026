@@ -4,3 +4,6 @@ from .income import router_income
 from .debts import router_debts
 from .goals import router_goals
 from .preferences import router_preferences
+from .breakdown import router_breakdown
+from .comparison import router_comparison
+from .location import router_location

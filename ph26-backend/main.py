@@ -13,6 +13,9 @@ from routes import (
     router_debts,
     router_goals,
     router_preferences,
+    router_breakdown,
+    router_comparison,
+    router_location,
 )
 
 @asynccontextmanager
@@ -63,6 +66,9 @@ app.include_router(router_income)
 app.include_router(router_debts)
 app.include_router(router_goals)
 app.include_router(router_preferences)
+app.include_router(router_breakdown)
+app.include_router(router_comparison)
+app.include_router(router_location)
 
 
 @app.get("/")

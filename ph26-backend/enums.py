@@ -1,15 +1,22 @@
 from enum import Enum
 
 class PayFrequency(str, Enum):
-    WEEKLY = "weekly"
-    BIWEEKLY = "biweekly"
-    SEMIMONTHLY = "semimonthly"
-    MONTHLY = "monthly"
+    weekly = "weekly"
+    biweekly = "biweekly"
+    semimonthly = "semimonthly"
+    monthly = "monthly"
 
 class ProfileType(str, Enum):
     current_job = "current_job"
-    offer = "offer"
+    job_offer = "job_offer"
     scenario = "scenario"
+
+class DebtType(str, Enum):
+    student_loan = "student_loan"
+    car = "car"
+    credit_card = "credit_card"
+    personal = "personal"
+    other = "other"
 
 class GoalType(str, Enum):
     emergency_fund = "emergency_fund"
@@ -19,13 +26,6 @@ class GoalType(str, Enum):
     freedom_fund = "freedom_fund"
     retirement = "retirement"
     custom = "custom"
-
-class DebtType(str, Enum):
-    student_loan = "student_loan"
-    car = "car"
-    credit_card = "credit_card"
-    personal = "personal"
-    other = "other"
 
 class BudgetStrategy(str, Enum):
     auto = "auto"
